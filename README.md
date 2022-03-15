@@ -45,4 +45,4 @@ This repository builds upon the work of [CheXpert](https://github.com/stanfordml
 
 
 ## Citing
-If you're using the BRAX labeler forked from CheXpert labeling tool, please cite [BRAX](https://arxiv.org/abs/1901.07031) paper and [CheXpert](https://arxiv.org/abs/1901.07031) as a reference.
+If you're using the BRAX labeler forked from CheXpert labeling tool, please cite [BRAX](https://arxiv.org/abs/1901.07031) dataset and [CheXpert](https://arxiv.org/abs/1901.07031) as a reference.

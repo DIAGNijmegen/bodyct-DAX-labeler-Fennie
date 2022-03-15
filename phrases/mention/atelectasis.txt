@@ -1,2 +1,5 @@
 atelecta
-collapse
+estrias
+opacidades lineares
+banda parenquimatosa
+bandas parenquimatosas

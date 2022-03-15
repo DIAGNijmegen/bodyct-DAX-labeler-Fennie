@@ -4,9 +4,7 @@ import itertools
 from collections import defaultdict
 from tqdm import tqdm
 from constants import *
-
 import bioc
-
 
 class Extractor(object):
     """Extract observations from impression sections of reports."""
@@ -41,12 +39,12 @@ class Extractor(object):
             = self.observation2mention_phrases[CARDIOMEGALY]
         enlarged_cardiom_mentions\
             = self.observation2mention_phrases[ENLARGED_CARDIOMEDIASTINUM]
-        positional_phrases = (["over the", "overly the", "in the"],
-                              ["", " superior", " left", " right"])
+        positional_phrases = (["acima", "superior", "interior"],
+                              ["anterior", "posterior", " esquerd", " direit"])
         positional_unmentions = [e1 + e2
                                  for e1 in positional_phrases[0]
                                  for e2 in positional_phrases[1]]
-        cardiomegaly_unmentions = [e1 + " " + e2.replace("the ", "")
+        cardiomegaly_unmentions = [e1 + " " + e2.replace("o ", "")
                                    for e1 in positional_unmentions
                                    for e2 in cardiomegaly_mentions
                                    if e2 not in ["cardiomegaly",
@@ -94,6 +92,8 @@ class Extractor(object):
                                                   length))
         annotation.text = sentence.text[start:start+length]
 
+        # print(annotation)
+
         impression.annotations.append(annotation)
 
     def extract(self, collection):
@@ -114,6 +114,7 @@ class Extractor(object):
             print("Extracting mentions...")
             documents = tqdm(documents)
         for document in documents:
+            # print(document)
             # Get the Impression section.
             impression = document.passages[0]
             annotation_index = itertools.count(len(impression.annotations))
@@ -125,13 +126,15 @@ class Extractor(object):
                         matches = re.finditer(phrase, sentence.text)
                         for match in matches:
                             start, end = match.span(0)
-
                             if self.overlaps_with_unmention(sentence,
                                                             observation,
                                                             start,
                                                             end):
                                 continue
-
+                            # print(impression)
+                            # print(sentence)
+                            # print(str(next(annotation_index)) )
+                            # print(observation)
                             self.add_match(impression,
                                            sentence,
                                            str(next(annotation_index)),

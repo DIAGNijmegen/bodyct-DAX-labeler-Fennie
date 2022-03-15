@@ -1,53 +1,58 @@
-emphysema
-blunt
-density
-elevation
-eventration
-scoliosis
+enfisema
+densidade
+elevacao
+eventracao
+escolio
+espondilose
 degenera
+retifica
 calcifi
-hyperinflation
-bronchospasm
-asthma
+hiperinsuflacao
+broncoespasmo
+asma
 hernia
-copd
-interstitial markings
-plaque
-osteophytosis
-aortic disease
-bronchiolitis
-airways disease
-thickening
-cephalization
-aspiration
-bullae
-hyperinflat
-contusion
-atherosclero
+dpoc
+intersticial
+intersticiais
+placa
+osteofit
+ateromatos
+bronquiolite
+doença das vias aereas
+aspiracao
+contusao
+aterosclerose
 osteopenia
-metastasis
+rarefacao
+rarefeit
+metastase
 granuloma
-pneumomediastinum
-pneumoperitoneum
-osteodystrophy
-cuffing
-irregular lucency
+pneumomediastino
+pneumoperitonio
+osteodistrofia
 inflam
-fissure
-hypertension
+hipertensao
 prominen
-kyphosis
-defib
-hyperexpansion
-bullet
-reticula
-thoracentesis
-bronchitis
-volume loss
-deformity
-hemorrhage
+cifose
+hiperexpansao
+bala
+projetil
+toracocentese
+bronquite
+perda de volume
+deformidade
+hemorragia
 hematoma
-radiopaque
-aerophagia
-arthropathy
-tracheostomy
+radio-opaco
+aerofagia
+artropatia
+traqueostomia
+proteses mamarias
+litica
+lobula
+esclero
+implante
+calo osseo
+hipoplasia
+espessamento parietal
+espessamento das paredes bronq

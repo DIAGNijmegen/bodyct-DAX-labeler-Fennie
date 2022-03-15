@@ -16,18 +16,29 @@ class Loader(object):
                                                  for key in ".,"})
         self.splitter = ssplit.NegBioSSplitter(newline=False)
 
-    def load(self):
+    def load(self, batch = None):
         """Load and clean the reports."""
         collection = bioc.BioCCollection()
         reports = pd.read_csv(self.reports_path,
                               header=None,
-                              names=[REPORTS])[REPORTS].tolist()
+                              names=[REPORTS])[REPORTS].tolist() 
+
+        if batch != None:
+            lista_reports_batch = [(batch*5000), (batch*5000 + 5000)]
+            print(f"Loading {lista_reports_batch} reports.")
+            reports = reports[(batch*5000):(batch*5000 + 5000)]
+
 
         for i, report in enumerate(reports):
             clean_report = self.clean(report)
             document = text2bioc.text2document(str(i), clean_report)
 
             if self.extract_impression:
+                impression_split = re.split('CONCLUSAO:',
+                                    document__)
+                impression__ = impression_split[1]
+                # print(impression__)
+
                 document = section_split.split_document(document)
                 self.extract_impression_from_passages(document)
 
@@ -47,14 +58,14 @@ class Loader(object):
         impression_passages = []
         for i, passage in enumerate(document.passages):
             if 'title' in passage.infons:
-                if passage.infons['title'] == 'impression':
+                if passage.infons['title'] == 'opiniao':
                     next_passage = document.passages[i+1]
                     assert 'title' not in next_passage.infons,\
                         "Document contains empty impression section."
                     impression_passages.append(next_passage)
 
         assert len(impression_passages) <= 1,\
-            (f"The document contains {len(document.passages)} impression " +
+            (f"The document contains {len(document.passages)} impression (opiniao) " +
              "passages.")
 
         assert len(impression_passages) >= 1,\
@@ -64,14 +75,15 @@ class Loader(object):
 
     def clean(self, report):
         """Clean the report text."""
-        lower_report = report.lower()
+        # lower_report = report
+        lower_report = str(report).lower()
         # Change `and/or` to `or`.
-        corrected_report = re.sub('and/or',
-                                  'or',
+        corrected_report = re.sub('e/ou',
+                                  'ou',
                                   lower_report)
         # Change any `XXX/YYY` to `XXX or YYY`.
         corrected_report = re.sub('(?<=[a-zA-Z])/(?=[a-zA-Z])',
-                                  ' or ',
+                                  ' ou ',
                                   corrected_report)
         # Clean double periods
         clean_report = corrected_report.replace("..", ".")

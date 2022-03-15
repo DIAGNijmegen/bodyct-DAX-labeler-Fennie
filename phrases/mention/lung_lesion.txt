@@ -1,12 +1,9 @@
-mass
-nodular density
-nodular densities
-nodular opacity
-nodular opacities
-nodular opacification
-nodule
-lump
-cavitary lesion
-carcinoma
-neoplasm
-tumor
+massa
+nodulo
+opacidade nodular
+nodular
+cavidade
+escavacao
+neoplasia
+lesao arredondada
+lesao ovalada

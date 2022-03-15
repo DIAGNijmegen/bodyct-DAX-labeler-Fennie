@@ -10,6 +10,8 @@ class Aggregator(object):
     def __init__(self, categories, verbose=False):
         self.categories = categories
 
+        print(categories)
+
         self.verbose = verbose
 
     def dict_to_vec(self, d):

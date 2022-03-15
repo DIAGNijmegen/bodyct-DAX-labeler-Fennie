@@ -1,10 +1,16 @@
 """Define mention classifier class."""
 import logging
 from pathlib import Path
-from negbio.pipeline import parse, ptb2ud, negdetect
-from negbio.neg import semgraph, propagator, neg_detector
+from negbio.pipeline import parse, ptb2ud
+
+#import negdetect customizado
+from pipeline import negdetect
+
+# from negbio.neg import semgraph, propagator, neg_detector
+from negbio.neg import neg_detector
 from negbio import ngrex
 from tqdm import tqdm
+import itertools
 
 from constants import *
 
@@ -18,6 +24,7 @@ class ModifiedDetector(neg_detector.Detector):
                  negation_path, post_negation_uncertainty_path):
         self.neg_patterns = ngrex.load(negation_path)
         self.uncertain_patterns = ngrex.load(post_negation_uncertainty_path)
+
         self.preneg_uncertain_patterns\
             = ngrex.load(pre_negation_uncertainty_path)
 
@@ -51,6 +58,7 @@ class ModifiedDetector(neg_detector.Detector):
                     else:
                         # Then match negation rules.
                         neg_m = self.match_neg(g, node)
+                        # print(NEGATION, neg_m, loc)
                         if neg_m:
                             yield NEGATION, neg_m, loc
                         else:
@@ -79,8 +87,8 @@ class Classifier(object):
     def __init__(self, pre_negation_uncertainty_path, negation_path,
                  post_negation_uncertainty_path, verbose=False):
         self.parser = parse.NegBioParser(model_dir=PARSING_MODEL_DIR)
-        lemmatizer = ptb2ud.Lemmatizer()
-        self.ptb2dep = ptb2ud.NegBioPtb2DepConverter(lemmatizer, universal=True)
+        self.lemmatizer = ptb2ud.Lemmatizer()
+        self.ptb2dep = ptb2ud.NegBioPtb2DepConverter(self.lemmatizer, universal=True)
 
         self.verbose = verbose
 
@@ -92,15 +100,17 @@ class Classifier(object):
         """Classify each mention into one of
         negative, uncertain, or positive."""
         documents = collection.documents
+
         if self.verbose:
             print("Classifying mentions...")
             documents = tqdm(documents)
         for document in documents:
-            # Parse the impression text in place.
-            self.parser.parse_doc(document)
-            # Add the universal dependency graph in place.
-            self.ptb2dep.convert_doc(document)
-            # Detect the negation and uncertainty rules in place.
+            # # Parse the impression text in place.
+            # self.parser.parse_doc(document)
+            # # Add the universal dependency graph in place.
+            # self.ptb2dep.convert_doc(document)
+            # # Detect the negation and uncertainty rules in place.
             negdetect.detect(document, self.detector)
             # To reduce memory consumption, remove sentences text.
             del document.passages[0].sentences[:]
+

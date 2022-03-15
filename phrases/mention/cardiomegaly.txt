@@ -1,9 +1,5 @@
-cardiomegaly
-the heart
-heart size
-cardiac enlargement
-cardiac size
-cardiac shadow
-cardiac contour
-cardiac silhouette
-enlarged heart
+cardiomegalia
+indice cardiotoracico aumentado
+indice cardiotoracico
+indice cardio-toracico
+aumento cardiaco

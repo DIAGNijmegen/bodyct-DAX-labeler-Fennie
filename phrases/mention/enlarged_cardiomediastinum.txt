@@ -1,7 +1,8 @@
-_mediastinum
-cardiomediastinum
-contour
-mediastinal configuration
-mediastinal silhouette
-pericardial silhouette
-cardiac silhouette and vascularity
+alargamento mediastinal
+alargamento do mediastino
+proeminencia mediastinal
+proeminencia hilar
+aumento hilar
+aumento dos hilos
+alargamento hilar
+alargamento dos hilos

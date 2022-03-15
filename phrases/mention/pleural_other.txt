@@ -1,7 +1,7 @@
-pleural thickening
-fibrosis
-fibrothorax
-pleural scar
-pleural parenchymal scar
-pleuro-parenchymal scar
-pleuro-pericardial scar
+espessamento pleural 
+calcificacao pleural
+irregularidades pleuropulmonares
+irregularidades da interface
+irregularidade da interface
+interface pleuroparenquimatosa
+paquipleuris

@@ -1,4 +1,4 @@
-# BRAX Labeler: Brazilian Portuguese adaptation of Chexpert Labeler
+# BRAX Labeler: Brazilian Portuguese adaptation of Chexpert Labeler 🩻🇧🇷
 
 The main difference resides in the fact that NegBio doesn't work for Portuguese, so we adapt Brazillian Negex triggers to detect negation and uncertainty. In this code we use [EasyNegex repository](https://github.com/fuchsfelipel/easyNegex) implementation of Negex.
 
